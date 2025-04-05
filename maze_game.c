@@ -61,6 +61,16 @@ int main(int argc, char *argv[])
         {
             printf("Game exited.\n");
             break;
+        }else if (input == 'M' || input == 'm') {
+            displayMazeWithPlayer(&game);
+        } else {
+            if (!movePlayer(&game, input)) {
+                printf("Invalid move: You cannot pass through walls or exit the maze boundaries.\n");
+            }
+            if (isGameFinished(&game)) {
+                printf("Congratulations! You've reached the exit!\n");
+                break;
+            }
         }
     }
     return EXIT_SUCCESS;

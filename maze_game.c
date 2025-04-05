@@ -19,7 +19,6 @@ typedef struct {
     Player player;
 } Game;
 
-// Function prototypes
 int loadMaze(Game *game, const char *filename);     // Load maze from file
 void displayMaze(const Game *game);                   // Display the entire maze
 void displayMazeWithPlayer(const Game *game);         // Display maze with player's current position (marked as 'X')
@@ -32,41 +31,8 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Usage: %s <maze_file>\n", argv[0]);
         return EXIT_FAILURE;
     }
-
     Game game;
-
-    // Load the maze from the provided file.
-    if (!loadMaze(&game, argv[1])) {
-        fprintf(stderr, "Error: Failed to load maze.\n");
-        return EXIT_FAILURE;
-    }
-
-    printInstructions();
-    displayMazeWithPlayer(&game);
-
-    char input;
-    while (1) {
-        printf("Enter command (W/A/S/D to move, M to show maze, Q to quit): ");
-        if (scanf(" %c", &input) != 1) {
-            fprintf(stderr, "Input error. Exiting.\n");
-            break;
-        }
-
-        if (input == 'Q' || input == 'q') {
-            printf("Game exited.\n");
-            break;
-        } else if (input == 'M' || input == 'm') {
-            displayMazeWithPlayer(&game);
-        } else {
-            if (!movePlayer(&game, input)) {
-                printf("Invalid move: You cannot pass through walls or exit the maze boundaries.\n");
-            }
-            if (isGameFinished(&game)) {
-                printf("Congratulations! You've reached the exit!\n");
-                break;
-            }
-        }
-    }
-
+    
     return EXIT_SUCCESS;
 }
+

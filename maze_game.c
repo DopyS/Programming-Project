@@ -5,13 +5,6 @@
 #define MAX_ROWS 100
 #define MAX_COLS 100
 
-int loadMaze(Game *game, const char *filename); // Load maze from file
-void displayMaze(const Game *game);             // Display the entire maze
-void displayMazeWithPlayer(const Game *game);   // Display maze with player's current position (marked as 'X')
-int movePlayer(Game *game, char direction);     // Move the player in the given direction
-int isGameFinished(const Game *game);           // Check if the player has reached the exit
-void printInstructions(void);                   // Print game instructions
-
 // Player structure representing the player's position in the maze.
 typedef struct
 {
@@ -27,6 +20,13 @@ typedef struct
     int cols;
     Player player;
 } Game;
+
+int loadMaze(Game *game, const char *filename); // Load maze from file
+void displayMaze(const Game *game);             // Display the entire maze
+void displayMazeWithPlayer(const Game *game);   // Display maze with player's current position (marked as 'X')
+int movePlayer(Game *game, char direction);     // Move the player in the given direction
+int isGameFinished(const Game *game);           // Check if the player has reached the exit
+void printInstructions(void);                   // Print game instructions
 
 int main(int argc, char *argv[])
 {
